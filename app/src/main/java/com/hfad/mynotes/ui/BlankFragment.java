@@ -1,6 +1,9 @@
-package com.hfad.mynotes;
+package com.hfad.mynotes.ui;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hfad.mynotes.R;
 import com.hfad.mynotes.domain.InMemoryNotesRepository;
 import com.hfad.mynotes.domain.Notes;
 import com.hfad.mynotes.ui.DogsDetailsActivity;
@@ -24,6 +28,9 @@ import java.util.List;
 
 
 public class BlankFragment extends Fragment {
+    public static final String DOGS_CLICKED_KEY = "DOGS_CLICKED_KEY";
+    public static final String SELECTED_DOGS = "SELECTED_DOGS";
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);//после вызова этого метода появляется Context
@@ -46,9 +53,18 @@ public class BlankFragment extends Fragment {
             View itemView = getLayoutInflater().inflate(R.layout.item_dogs, container, false);
             itemView.findViewById(R.id.root).setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                   DogsDetailsActivity.show(requireContext(),notes);
-                    //Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
+                public void onClick(View view) {
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable(SELECTED_DOGS, notes);
+                        getParentFragmentManager()
+                                .setFragmentResult(DOGS_CLICKED_KEY, bundle);
+
+                    } else {
+                        DogsDetailsActivity.show(requireContext(), notes);
+
+                        //Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
             ImageView icon = itemView.findViewById(R.id.icon);
