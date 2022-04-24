@@ -1,3 +1,4 @@
+//интерфейс со списком заметок
 package com.hfad.mynotes.domain;
 
 import java.util.List;
