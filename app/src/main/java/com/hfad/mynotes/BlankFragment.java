@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.hfad.mynotes.domain.InMemoryNotesRepository;
 import com.hfad.mynotes.domain.Notes;
+import com.hfad.mynotes.ui.DogsDetailsActivity;
+import com.hfad.mynotes.ui.DogsDetailsFragment;
 
 import java.util.List;
 
@@ -45,7 +47,8 @@ public class BlankFragment extends Fragment {
             itemView.findViewById(R.id.root).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
+                   DogsDetailsActivity.show(requireContext(),notes);
+                    //Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
                 }
             });
             ImageView icon = itemView.findViewById(R.id.icon);
