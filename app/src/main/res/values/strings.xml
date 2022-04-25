@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyNotes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="corgi">Корги</string>
+    <string name="germanShepherd">Немецкая овчарка</string>
+    <string name="centralAsianShepherdDog">Среднеазиатская овчарка</string>
+    <string name="caucasianShepherdDog">Кавказская овчарка</string>
+    <string name="dogs">dogs</string>
 </resources>

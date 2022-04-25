@@ -1,8 +1,10 @@
-package com.hfad.mynotes;
+package com.hfad.mynotes.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.hfad.mynotes.R;
 
 public class MainActivity extends AppCompatActivity {
 
