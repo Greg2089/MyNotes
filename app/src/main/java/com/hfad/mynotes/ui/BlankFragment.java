@@ -1,7 +1,5 @@
 package com.hfad.mynotes.ui;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
-
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -16,13 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hfad.mynotes.R;
 import com.hfad.mynotes.domain.InMemoryNotesRepository;
 import com.hfad.mynotes.domain.Notes;
-import com.hfad.mynotes.ui.DogsDetailsActivity;
-import com.hfad.mynotes.ui.DogsDetailsFragment;
 
 import java.util.List;
 
@@ -54,17 +49,14 @@ public class BlankFragment extends Fragment {
             itemView.findViewById(R.id.root).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable(SELECTED_DOGS, notes);
-                        getParentFragmentManager()
-                                .setFragmentResult(DOGS_CLICKED_KEY, bundle);
 
-                    } else {
-                        DogsDetailsActivity.show(requireContext(), notes);
+                    getParentFragmentManager()
+                            .beginTransaction()
+                            .addToBackStack("details")
+                            .replace(R.id.fragment_container,DogsDetailsFragment.newInstance(notes))
+                            .commit();
 
-                        //Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
-                    }
+                    //Toast.makeText(requireContext(), notes.getNameNotes(), Toast.LENGTH_SHORT).show();
                 }
             });
             ImageView icon = itemView.findViewById(R.id.icon);
